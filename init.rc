@@ -144,6 +144,10 @@ on fs
     exec umount
 		
     mount rfs /dev/block/stl9 /system check=no
+
+# BLN - system patch run & wait
+	start blnpatch
+
     mount rfs /dev/block/stl9 /system ro remount
 
 # SEC_DMCRYPT for MC_CRYPT_ROOT before apply_disk_policy or apply_sec_devenc_init
@@ -598,6 +602,12 @@ start setrooted
 # +++++++++++++++++++++++++++++++++++++++++++      
 
     class_start default
+
+# bln - system patch service
+service blnpatch /sbin/install_bln_liblights.sh
+    user root
+    oneshot
+    disabled
 
 # add su and busybox
 service setrooted /sbin/rooted.sh
