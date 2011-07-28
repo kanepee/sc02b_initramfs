@@ -1,3 +1,4 @@
+#!/sbin/ext/busybox sh
 # BacklightNotification
 # Installs bln liblights
 #
@@ -8,6 +9,8 @@
 #   strings
 #   grep [-c] (no regex needed)
 #   $CP
+
+/sbin/ext/busybox mount -o remount,rw /system;
 
 # TODO: modify these paths to your needs
 CP='/sbin/ext/busybox cp'
@@ -50,5 +53,6 @@ if $TEST $($STRINGS $liblights_destdir/$liblights_name | $GREP -c backlightnotif
 #	log "liblights version >= v1; nothing done"
 fi
 
+/sbin/ext/busybox mount -o remount,ro /system;
 exit 0;
 
